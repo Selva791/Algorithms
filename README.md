@@ -1,1 +1,1 @@
-Mix of # Algorithms many questions and answers
+Mix of # Algorithms, many questions and answers
