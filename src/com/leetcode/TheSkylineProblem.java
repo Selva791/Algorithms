@@ -13,6 +13,7 @@ public class TheSkylineProblem  {
 		TheSkylineProblem sky=new TheSkylineProblem();
 		System.out.println(sky.getSkyline(buildings));
 	}
+	
 	 public List<List<Integer>> getSkyline(int[][] buildings) {
 	        int n=buildings.length; 
 	        
