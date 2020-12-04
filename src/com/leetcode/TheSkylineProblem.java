@@ -14,7 +14,8 @@ public class TheSkylineProblem  {
 		System.out.println(sky.getSkyline(buildings));
 	}
 	 public List<List<Integer>> getSkyline(int[][] buildings) {
-	        int n=buildings.length;
+	        int n=buildings.length; 
+	        
 	        List<List<Integer>> res=new ArrayList();
 	         if(n==0){
 	            return res;
