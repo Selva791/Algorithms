@@ -1,5 +1,6 @@
 package com.leetcode;
 
+import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,8 +18,8 @@ public class AccountsMerge {
 		result.add(Arrays.asList("David","David4@m.co","David5@m.co"));
 		result.add(Arrays.asList("David","David2@m.co","David3@m.co"));
 		result.add(Arrays.asList("David","David1@m.co","David2@m.co"));
-
 		a.accountsMerge(result);
+		
 	}
 
 	public List<List<String>> accountsMerge(List<List<String>> accounts) {
