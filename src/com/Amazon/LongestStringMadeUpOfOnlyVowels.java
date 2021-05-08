@@ -1,11 +1,18 @@
 package com.Amazon;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class LongestStringMadeUpOfOnlyVowels {
 	public static void main(String[] args) {
 		LongestStringMadeUpOfOnlyVowels lv=new LongestStringMadeUpOfOnlyVowels();
 		//earthproblem
 		//letsgosomewhere
 		String s="earthproblem";
+		 Map<Character,List<String>> set=new HashMap<>();
+		set.computeIfAbsent('d', v-> new ArrayList<String>()).add("");
 		System.out.println(lv.longestString(s));
 	}
 	public int longestString(String s){

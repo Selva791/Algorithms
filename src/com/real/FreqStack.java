@@ -44,7 +44,7 @@ public class FreqStack {
 	        }
 	    }
 
-	    class FreqComparator implements Comparator<Pair> {
+		class FreqComparator implements Comparator<Pair> {
 	        public int compare(Pair p1, Pair p2){
 	            if (p1.freq < p2.freq)
 	                return 1;
