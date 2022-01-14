@@ -11,7 +11,6 @@ public class AllOoneDataStructure {
 		AllOoneDataStructure a = new AllOoneDataStructure();
 		a.inc("hello");
 		a.inc("goodbye");
-
 		a.inc("hello");
 		a.inc("hello");
 		System.out.println(a.getMaxKey());
