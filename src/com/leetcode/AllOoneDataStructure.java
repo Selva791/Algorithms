@@ -10,7 +10,6 @@ public class AllOoneDataStructure {
 	public static void main(String[] args) {
 		AllOoneDataStructure a = new AllOoneDataStructure();
 		a.inc("hello");
-		a.inc("goodbye");
 		a.inc("hello");
 		a.inc("hello");
 		System.out.println(a.getMaxKey());
