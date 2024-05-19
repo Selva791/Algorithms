@@ -6,88 +6,80 @@ import java.util.Map;
 public class LRUCacheDoubleLinkedList {
 	public static void main(String[] args) {
 		LRUCacheDoubleLinkedList l = new LRUCacheDoubleLinkedList(2);
-		l.put(2, 1);
+		l.put(1, 0);
 		l.put(2, 2);
+		l.get(1);
+		l.put(3, 3);
 		l.get(2);
-		l.put(1, 1);
-		l.put(4, 1);
-		l.get(2);
+		l.put(4, 4);
+		l.get(1);
+		l.get(3);
+		l.get(4);
 	}
 
-	  Map<Integer, Node> cache;
-		Node head, tail;
-		int cap,c;
+	Node head,tail;
+	class Node{
+		Node prev,next;
+		int val;
+		int key;
+		Node(int val,int key){
+			this.val=val;
+			this.key=key;
+			prev=next=null;
+		}
+	}
+	Map<Integer,Node> mp;
+	int capacity;
 
-		class Node {
-			Node pre, next;
-			int val, key;
+	public LRUCacheDoubleLinkedList(int capacity) {
+		mp=new HashMap<>();
+		this.capacity=capacity;
+		head=new Node(-1,-1);
+		tail=new Node(-1,-1);
+		head.prev=tail;
+		tail.next=head;
+	}
 
-			Node(int k, int v) {
-				val = v;
-				key = k;
-				pre = next = null;
+	public int get(int key) {
+		if(!mp.containsKey(key)){
+			return -1;
+		}
+		Node node=mp.get(key);
+		changeHead(node);
+		return node.val;
+	}
+	public void changeHead(Node node){
+		Node prev=node.prev;
+		Node nxt=node.next;
+		prev.next=nxt;
+		nxt.prev=prev;
+		addHead(node);
+	}
+	public void addHead(Node node){
+		Node temp=head.prev;
+		temp.next=node;
+		node.prev=temp;
+		node.next=head;
+		head.prev=node;
+
+	}
+	public void put(int key, int value) {
+		Node newNode=null;
+		if(!mp.containsKey(key)){
+			if(capacity==mp.size()){
+				Node r=tail.next;
+				tail.next=r.next;
+				r.next.prev=tail;
+				mp.remove(r.key);
 			}
+			newNode=new Node(value,key);
+			mp.put(key,newNode);
+			addHead(newNode);
+		}else{
+			newNode=mp.get(key);
+			changeHead(newNode);
 		}
 
-		public LRUCacheDoubleLinkedList(int capacity) {
-			cache = new HashMap<>();
-			cap = capacity;
-	        c=0;
-	        head=new Node(0,0);
-	        tail=new Node(0,0);
-	        head.pre=tail;
-	        tail.next=head;
-	        
-		}
-
-		public int get(int key) {
-			if(!cache.containsKey(key))return -1;
-			
-	        Node val=cache.get(key);
-	        cache.remove(key);
-	        remove(val);
-	        add(val);
-	        cache.put(key,val);
-	        return val.val;
-		}
-	    public void put(int key, int value) {
-	            Node s=cache.get(key);
-			    if(s==null){
-	                Node v=new Node(key,value);
-	                cache.put(key,v);
-	                add(v);
-	                c++;
-	                
-	            }else{
-	                
-	                s.val=value;
-	                remove(s);
-	                add(s);
-	            }
-	        if(c>cap){
-	            Node del=tail.next;
-	            cache.remove(del.key);
-	            remove(del);
-	            c--;
-	        }
-	           
-		}
-
-		public void remove(Node cur) {
-			    Node before=cur.pre;
-	            Node after=cur.next;
-	            cur.pre=cur.next=null;
-	            before.next=after;
-	            after.pre=before;
-		}
-
-		public void add(Node cur) {
-			    Node before=head.pre;
-	            before.next=cur;
-	            cur.pre=before;
-	            head.pre=cur;
-	            cur.next=head;
-	            
-		}
+	}
 
 }
